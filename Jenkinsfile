@@ -7,7 +7,7 @@ pipeline {
     stage('Build Docker image') {
       steps {
         script {
-          sh "docker build -t gcr.io/silicon-smithy-377208/iti-grad"
+          sh "docker build -t gcr.io/silicon-smithy-377208/iti-grad ."
           sh "docker push gcr.io/silicon-smithy-377208/iti-grad"
         }
       }
