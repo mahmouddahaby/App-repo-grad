@@ -1,79 +1,64 @@
-# Getting Started with Create React App
+### App-Repo-Grad1
+This repository contains a simple Java Gradle application that can be used to build and deploy a Docker image to a Kubernetes cluster.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Prerequisites
+In order to build and deploy the application, you'll need the following tools installed on your local machine:
 
-## Available Scripts
+Java 11
+Gradle 6.x
+Docker
+Kubernetes CLI (kubectl)
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+###Getting Started
+To get started with this application, you'll need to follow these steps:
 
 
-### To containrize the application run
+1 - Clone this repository: git clone https://github.com/mahmouddahaby/App-repo-grad1.git
+2- cd into the App-repo-grad1 directory
+3- Build the Docker image: docker build -t my-app .
+4- Run the Docker container: docker run -p 8080:8080 my-app
+5- Open your web browser and navigate to http://localhost:8080 to see the "Hello World" message.
 
-docker build -t {your-repo}/{image-name}:{version}
+### Building the application
+To build the application, navigate to the root directory of the project and run the following command:
 
-### Run it 
+ ```
+./gradlew build
+ ```
+This will compile the Java code, run the tests, and produce an executable JAR file located in the build/libs/ directory.
 
-docker run -p 80:80 {your-repo}/{image-name}:{version}
+### Building the Docker image
+To build a Docker image of the application, run the following command from the root directory of the project:
+
+ ```
+docker build -t <image-name> .
+ ```
+Replace <image-name> with a name for your Docker image. This command will create a Docker image with the specified name, based on the Dockerfile in the root directory of the project.
+
+### Running the Docker image
+To run the Docker image locally, run the following command:
+
+ ```
+docker run -p 8080:8080 <image-name>
+ ```
+Replace <image-name> with the name of the Docker image you built in the previous step. This will start a container running the application, which will be accessible at http://localhost:8080.
+
+### Deploying the application to Kubernetes
+To deploy the application to a Kubernetes cluster, you'll need to have a running Kubernetes cluster and the kubectl CLI tool installed.
+
+First, create a Kubernetes deployment by running the following command:
+
+ ```
+kubectl apply -f app-k8s/deployment.yaml
+ ```
+This will create a deployment with one replica of the Docker image you built earlier. To scale up the number of replicas, modify the replicas field in the deployment.yaml file and re-run the above command.
+
+Next, create a Kubernetes service for the deployment by running the following command:
+
+ ```
+kubectl apply -f app-k8s/service.yaml
+ ```
+This will create a service that exposes the deployment on a cluster-internal IP address.
+
+### Contributing
+If you'd like to contribute to this project, feel free to open a pull request.
