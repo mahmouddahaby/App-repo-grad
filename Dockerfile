@@ -2,9 +2,9 @@ FROM node:alpine as build
 
 WORKDIR /hello-world
 
-ENV PATH="./node_modules/.bin:$PATH"
-
 COPY . .
+
+RUN npm i 
 
 RUN npm run build
 
